@@ -1,6 +1,7 @@
 // src/App.jsx
 import { useEffect, useState } from "react";
 import "./App.css";
+ 
 
 import { db } from "./firebase";
 import {
@@ -119,13 +120,19 @@ function App() {
       <header className="site-header">
         <div className="header-inner">
           {/* ЛОГО */}
-          <div className="logo-block">
-            <div className="logo-mark">IR</div>
-            <div className="logo-text">
-              <div className="logo-name">ИРИНА РОЩУПКИНА</div>
-              <div className="logo-sub">Hair &amp; Make-Up Artist</div>
-            </div>
-          </div>
+        <div className="logo-block">
+<img
+  src="/img/logo-irina.png"
+  alt="Логотип Ирина Рощупкина"
+  className="logo-img"
+/>
+
+  <div className="logo-text">
+    <div className="logo-name">ИРИНА РОЩУПКИНА</div>
+    <div className="logo-sub">Hair &amp; Make-Up Artist</div>
+  </div>
+</div>
+
 
           {/* МЕНЮ */}
           <nav className="main-nav">
@@ -187,7 +194,7 @@ function App() {
                 <br />
                 трендам 2025 за
                 <br />
-                15&nbsp;900&nbsp;₽ в Москве!
+                10&nbsp;000&nbsp;₽ в Москве!
               </h1>
 
               <p className="hero-subline">ВЫЕЗД ПО МОСКВЕ И ОБЛАСТИ</p>
@@ -242,20 +249,17 @@ function App() {
             <div className="price-grid">
               {/* Базовый образ */}
               <div className="price-card">
-                <div className="price-name">Макияж + причёска</div>
+                <div className="price-name">ДНЕВНОЙ/ВЕЧЕРНИЙ ОБРАЗ</div>
                 <div className="price-tag">
                   мероприятие, фотосессия, свидание, деловая съёмка
                 </div>
                 <ul className="price-list">
                   <li>
-                    Подбор образа под формат события и ваши черты лица.
+                    Макияж 6000 р
                   </li>
-                  <li>Стойкий макияж без эффекта «маски».</li>
-                  <li>
-                    Аккуратная укладка, которая сохранится до конца дня.
-                  </li>
+                  <li>МАКИЯЖ + Прическа  10 000</li>
                 </ul>
-                <div className="price-value">от 15 900 ₽</div>
+                <div className="price-value">от 6 000 ₽</div>
                 <a href="#contacts" className="btn btn-outline">
                   Записаться на образ
                 </a>
@@ -298,7 +302,7 @@ function App() {
                 </p>
 
                 <div className="price-value">
-                  Свадебный макияж в день торжества — 8 000 ₽
+                  Свадебный макияж в день торжества —  8000 ₽
                 </div>
                 <p className="price-note">
                   Свадебный образ (макияж + причёска) — 15 000 ₽
@@ -320,37 +324,39 @@ function App() {
               </div>
 
               {/* ВЫПУСКНОЙ ОБРАЗ */}
-              <div className="price-card">
-                <div className="price-name">Выпускной образ</div>
-                <div className="price-tag">
-                  будь звездой своего выпускного вечера
-                </div>
-                <ul className="price-list">
-                  <li>
-                    Профессиональный макияж, который подчеркнёт красоту и
-                    продержится весь вечер.
-                  </li>
-                  <li>
-                    Укладка волос под платье и формат выпускного: локоны,
-                    пучок или гладкая укладка.
-                  </li>
-                  <li>
-                    Пробный макияж по желанию, чтобы заранее утвердить образ.
-                  </li>
-                  <li>Используется стойкая профессиональная косметика.</li>
-                </ul>
-                <div className="price-value">
-                  Комплексный образ со скидкой — 10 800 ₽
-                </div>
-                <p className="price-note">
-                  Пробный макияж — 5 000 ₽, выпускной макияж — 7 000 ₽,
-                  укладка волос — 5 000 ₽. При заказе макияжа + укладки в
-                  один день действует скидка 10%.
-                </p>
-                <a href="#contacts" className="btn btn-outline">
-                  Забронировать выпускной
-                </a>
-              </div>
+            {/* ВЫПУСКНОЙ ОБРАЗ */}
+<div className="price-card">
+  <div className="price-name">Выпускной образ</div>
+  <div className="price-tag">
+    будь звездой своего выпускного вечера
+  </div>
+  <ul className="price-list">
+    <li>
+      Профессиональный макияж, который подчеркнёт красоту и
+      продержится весь вечер.
+    </li>
+    <li>
+      Укладка волос под платье и формат выпускного: локоны,
+      пучок или гладкая укладка.
+    </li>
+    <li>
+      Пробный макияж по желанию, чтобы заранее утвердить образ.
+    </li>
+    <li>Используется стойкая профессиональная косметика.</li>
+  </ul>
+
+  {/* Цены отдельными строками, выделены цветом */}
+  <div className="price-lines">
+    <div className="price-line">Пробный макияж — 5 000 ₽</div>
+    <div className="price-line">Выпускной макияж — 7 000 ₽</div>
+    <div className="price-line">Укладка — 5 000 ₽</div>
+  </div>
+
+  <a href="#contacts" className="btn btn-outline">
+    Забронировать выпускной
+  </a>
+</div>
+
 
               {/* ЛИФТИНГ-МАKИЯЖ */}
               <div className="price-card">
