@@ -283,7 +283,7 @@ function App() {
                 </ul>
 
                 <div className="price-value">
-                  ДНЕВНОЙ/ВЕЧЕРНИЙ ОБРАЗ от 6 000 ₽&nbsp;000&nbsp;₽
+                  ДНЕВНОЙ/ВЕЧЕРНИЙ ОБРАЗ от 6&nbsp;000&nbsp;₽
                 </div>
 
                 <a href="#contacts" className="btn btn-outline">
@@ -415,9 +415,9 @@ function App() {
                 </ul>
 
                 <div className="price-lines">
-                  <div className="price-line">Пробный макияж — 5 000 ₽</div>
-                  <div className="price-line">Выпускной макияж — 7 000 ₽</div>
-                  <div className="price-line">Укладка — 5 000 ₽</div>
+                  <div className="price-line">Пробный макияж — <p><b>5 000 ₽</b></p></div>
+                  <div className="price-line">Выпускной макияж — <p> <b>7 000 ₽</b></p></div>
+                  <div className="price-line">Укладка — <p><b>5 000 ₽</b></p></div>
                 </div>
 
                 <a href="#contacts" className="btn btn-outline">
