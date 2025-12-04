@@ -37,13 +37,13 @@ function App() {
   const currentYear = new Date().getFullYear();
 
   // 20 фото галереи
-  const galleryImages = Array.from({ length: 20 }, (_, i) => ({
+  const galleryImages = Array.from({ length: 50 }, (_, i) => ({
     src: `/img/gallery-${i + 1}.jpg`,
     alt: `Работа ${i + 1}`,
   }));
 
   // сертификаты
-  const certificateImages = Array.from({ length: 5 }, (_, i) => ({
+  const certificateImages = Array.from({ length: 6 }, (_, i) => ({
     src: `/img/cert-${i + 1}.jpg`,
     alt: `Сертификат ${i + 1}`,
   }));
@@ -190,11 +190,8 @@ function App() {
             {/* Текст по центру */}
             <div className="hero-content hero-content-centered">
               <h1 className="hero-title">
-                Макияж и причёска по модным
-                <br />
-                трендам 2025 за
-                <br />
-                10&nbsp;000&nbsp;₽ в Москве!
+               Ваш стиль — в ритме современных трендов красоты.
+             
               </h1>
 
               <p className="hero-subline">ВЫЕЗД ПО МОСКВЕ И ОБЛАСТИ</p>
@@ -247,23 +244,46 @@ function App() {
             </p>
 
             <div className="price-grid">
-              {/* Базовый образ */}
-              <div className="price-card">
-                <div className="price-name">ДНЕВНОЙ/ВЕЧЕРНИЙ ОБРАЗ</div>
-                <div className="price-tag">
-                  мероприятие, фотосессия, свидание, деловая съёмка
-                </div>
-                <ul className="price-list">
-                  <li>
-                    Макияж 6000 р
-                  </li>
-                  <li>МАКИЯЖ + Прическа  10 000</li>
-                </ul>
-                <div className="price-value">от 6 000 ₽</div>
-                <a href="#contacts" className="btn btn-outline">
-                  Записаться на образ
-                </a>
-              </div>
+           {/* FASHION STYLE */}
+<div className="price-card">
+  <div className="price-name">Fashion style</div>
+  <div className="price-tag">
+    современный образ с акцентом на стиль и фактуру
+  </div>
+  <ul className="price-list">
+    <li>
+      Идеально подобранные текстуры и цвета под ваш тип внешности и
+      гардероб.
+    </li>
+    <li>
+      Профессиональная работа с кожей: ровный тон, свечение без эффекта
+      «маски».
+    </li>
+    <li>
+      Графичные стрелки, насыщенные губы или акцент на глаза — по вашему
+      настроению и задаче мероприятия.
+    </li>
+    <li>
+      Современные техники и стойкая профессиональная косметика для
+      безупречного результата.
+    </li>
+  </ul>
+
+  <div className="price-value">Макияж Fashion style — 8&nbsp;000&nbsp;₽</div>
+  <p className="price-note">
+    Полный образ (макияж + укладка) — 13&nbsp;000&nbsp;₽.
+  </p>
+
+  <p className="price-note">
+    Позвольте себе выделиться и почувствовать себя иконой стиля. Запишитесь
+    на макияж или полный образ в Fashion style и станьте центром внимания.
+  </p>
+
+  <a href="#contacts" className="btn btn-outline">
+    Записаться на Fashion style
+  </a>
+</div>
+
 
               {/* СВАДЕБНЫЙ ОБРАЗ */}
               <div className="price-card">
@@ -323,9 +343,9 @@ function App() {
                 </a>
               </div>
 
-              {/* ВЫПУСКНОЙ ОБРАЗ */}
-            {/* ВЫПУСКНОЙ ОБРАЗ */}
-<div className="price-card">
+  
+            {/* ВЫПУСКНОЙ ОБРАЗ */}         
+            <div className="price-card">
   <div className="price-name">Выпускной образ</div>
   <div className="price-tag">
     будь звездой своего выпускного вечера
@@ -355,7 +375,7 @@ function App() {
   <a href="#contacts" className="btn btn-outline">
     Забронировать выпускной
   </a>
-</div>
+            </div>
 
 
               {/* ЛИФТИНГ-МАKИЯЖ */}
@@ -391,9 +411,12 @@ function App() {
                   Записаться на лифтинг-макияж
                 </a>
               </div>
+
             </div>
           </div>
+          
         </section>
+        
 {/* ОБО МНЕ */}
 <section
   id="about"
