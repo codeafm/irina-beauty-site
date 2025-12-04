@@ -1141,16 +1141,26 @@ body {
 
 /* Секции при скролле */
 
+/* По умолчанию – НЕТ скрытия (контент виден) */
 .reveal-section {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.75s ease-out, transform 0.75s ease-out;
-}
-
-.reveal-section.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Этот класс мы будем добавлять из JS,
+   только если всё ок – тогда запускается анимация */
+.reveal-section.reveal-init {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* Когда секция попала в видимую область */
+.reveal-section.reveal-init.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 /* ADAPTIVE */
 
