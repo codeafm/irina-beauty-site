@@ -170,7 +170,7 @@ function App() {
             {/* Соцсети слева */}
             <div className="hero-social-column">
               <a
-                href="https://vk.com/your_profile"
+                href="https://vk.com/id710212634"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="VK"
@@ -516,14 +516,14 @@ function App() {
                     Instagram
                   </a>
                   <a
-                    href="https://t.me/your_profile"
+                    href="https://t.me/Iriska_ros"
                     target="_blank"
                     rel="noreferrer"
                   >
                     Telegram
                   </a>
                   <a
-                    href="https://vk.com/your_profile"
+                    href="https://vk.com/id710212634"
                     target="_blank"
                     rel="noreferrer"
                   >
