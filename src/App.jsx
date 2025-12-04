@@ -267,6 +267,31 @@ function App() {
             </p>
 
             <div className="price-grid">
+   {/* FASHION STYLE */}
+              <div className="price-card">
+                <div className="price-name">ДНЕВНОЙ/ВЕЧЕРНИЙ ОБРАЗ</div>
+                <div className="price-tag">
+                 мероприятие, фотосессия, свидание, деловая съёмка
+                </div>
+                <ul className="price-list">
+                  <li>
+                    Макияж 6000 р
+                  </li>
+                  <li>
+                    МАКИЯЖ + Прическа 10 000
+                  </li>
+                </ul>
+
+                <div className="price-value">
+                  ДНЕВНОЙ/ВЕЧЕРНИЙ ОБРАЗ от 6 000 ₽&nbsp;000&nbsp;₽
+                </div>
+
+                <a href="#contacts" className="btn btn-outline">
+                  Записаться на образ
+                </a>
+              </div>
+              
+
               {/* FASHION STYLE */}
               <div className="price-card">
                 <div className="price-name">Fashion style</div>
@@ -606,6 +631,116 @@ function App() {
             </div>
           </div>
         </section>
+        {/* КУРСЫ / ОБУЧЕНИЕ */}
+        <section
+          id="courses"
+          className="section section-soft reveal-section courses-section"
+        >
+          <div className="section-inner">
+            <h2 className="section-title">Курсы и обучение</h2>
+            <p className="section-subtitle">
+              Индивидуальные программы для тех, кто хочет уверенно владеть макияжем —
+              для себя или для профессиональной работы с клиентами.
+            </p>
+
+            <div className="courses-grid">
+              {/* Сам себе визажист */}
+              <div className="course-card">
+                <div className="course-tag">для себя</div>
+                <h3 className="course-title">Обучение «Сам себе визажист»</h3>
+                <p className="course-subtitle">
+                  За 3–4 часа вы научитесь создавать и лёгкий дневной нюд, и
+                  выразительный вечерний макияж с учётом ваших черт лица и стиля.
+                </p>
+
+                <ul className="course-list">
+                  <li>
+                    Разберём дневной нюдовый и вечерний макияж — адаптация под вашу
+                    внешность и гардероб.
+                  </li>
+                  <li>
+                    Разбор косметички: что оставить, что лучше заменить, как выбирать
+                    продукты под ваш тип кожи.
+                  </li>
+                  <li>
+                    Базовый уход за кожей — подготовка лица, чтобы макияж выглядел
+                    ровным и свежим.
+                  </li>
+                  <li>
+                    Анатомия лица: на каких зонах делать акцент и как корректно скрывать
+                    небольшие недостатки.
+                  </li>
+                  <li>
+                    Все этапы фиксируем на фейсчарте — у вас остаётся персональная
+                    «шпаргалка».
+                  </li>
+                  <li>
+                    Я показываю технику на одной половине лица, вы повторяете на второй
+                    под моим руководством.
+                  </li>
+                  <li>Вся профессиональная косметика и кисти предоставляются.</li>
+                  <li>
+                    При желании уделим время вашему отдельному запросу (макияж для
+                    конкретного события или формата съёмки).
+                  </li>
+                </ul>
+
+                <div className="course-footer">
+                  <div className="course-price">
+                    Индивидуальное обучение — 9&nbsp;000&nbsp;₽
+                  </div>
+                  <a href="#contacts" className="btn btn-outline course-btn">
+                    Записаться на обучение
+                  </a>
+                </div>
+              </div>
+
+              {/* Повышение квалификации */}
+              <div className="course-card">
+                <div className="course-tag">для визажистов</div>
+                <h3 className="course-title">
+                  Индивидуальный МК «Повышение квалификации»
+                </h3>
+                <p className="course-subtitle">
+                  Подходит начинающим и практикующим визажистам, которые хотят
+                  совершенствовать технику и работать в современных тенденциях.
+                </p>
+
+                <ul className="course-list">
+                  <li>
+                    Разбираем ваши текущие навыки, ошибки и страхи — строим программу
+                    под вас, без лишней теории.
+                  </li>
+                  <li>
+                    Отработка актуальных техник: чистый тон без эффекта «маски»,
+                    симметричные стрелки, модные посадки туши и акцентов.
+                  </li>
+                  <li>
+                    Работаем с трендовыми схемами макияжа для съёмок, мероприятий и
+                    соцсетей.
+                  </li>
+                  <li>
+                    Разбор портфолио и нюансов профессиональной съёмки: как сделать
+                    образ «читаемым» в кадре.
+                  </li>
+                  <li>
+                    Индивидуальная программа: я подстраиваю содержание МК под ваши
+                    запросы и задачи.
+                  </li>
+                </ul>
+
+                <div className="course-footer">
+                  <div className="course-price">
+                    Стоимость индивидуального МК — 10&nbsp;000&nbsp;₽
+                  </div>
+                  <a href="#contacts" className="btn btn-outline course-btn">
+                    Забронировать МК
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* ОТЗЫВЫ */}
         <section
@@ -692,7 +827,7 @@ function App() {
           </div>
         </section>
 
-        {/* КОНТАКТЫ */}
+         {/* КОНТАКТЫ */}
         <section
           id="contacts"
           className="section section-contrast reveal-section"
@@ -705,6 +840,9 @@ function App() {
                 <a href="tel:+79161694271">+7 (916) 169 42 71</a>
               </p>
               <p>Город: Москва</p>
+              <p>
+                Адрес: Московская область, Долгопрудный, Московская улица, 56
+              </p>
               <p>Работаю по предварительной записи.</p>
 
               <div className="contacts-buttons">
@@ -733,8 +871,8 @@ function App() {
                   Быстрая заявка на макияж
                 </div>
                 <p>
-                  Напишите мне удобный формат, дату и время — я подскажу,
-                  какой образ подойдёт именно вам.
+                  Напишите мне удобный формат, дату и время — я подскажу, какой
+                  образ подойдёт именно вам.
                 </p>
                 <ul>
                   <li>Дата и время мероприятия.</li>
@@ -748,6 +886,33 @@ function App() {
             </div>
           </div>
         </section>
+
+        {/* КАРТА */}
+        <section id="map" className="section section-map reveal-section">
+          <div className="section-inner">
+            <h2 className="section-title section-title-center">Как добраться</h2>
+            <p className="section-subtitle section-subtitle-center">
+              Московская область, Долгопрудный, Московская улица, 56
+            </p>
+
+            <div className="contacts-map-wrapper">
+              <p className="contacts-map-subtitle">
+                Точное местоположение студии на карте. Нажмите, чтобы открыть в
+                приложении и построить маршрут.
+              </p>
+              <div className="contacts-map">
+                <iframe
+                  title="Карта проезда"
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src="https://yandex.ru/map-widget/v1/?ll=37.525324%2C55.960251&z=17&pt=37.525324,55.960251,pm2rdm"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
 
       {/* ФУТЕР */}
