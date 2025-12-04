@@ -372,6 +372,16 @@ body {
   gap: 18px;
 }
 
+.works-load-more {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.works-load-more .btn {
+  min-width: 220px;
+}
+
 /* карточка с лёгкой тенью и анимацией */
 .work-card {
   border-radius: 18px;

@@ -1,7 +1,6 @@
 // src/App.jsx
 import { useEffect, useState } from "react";
 import "./App.css";
- 
 
 import { db } from "./firebase";
 import {
@@ -32,21 +31,21 @@ const fallbackReviews = [
   },
 ];
 
+// ВЫНЕС галерею и сертификаты ЗА компонент, чтобы они не создавались при каждом рендере
+const GALLERY_IMAGES = Array.from({ length: 50 }, (_, i) => ({
+  src: `/img/gallery-${i + 1}.jpg`,
+  alt: `Работа ${i + 1}`,
+}));
+
+const CERTIFICATE_IMAGES = Array.from({ length: 6 }, (_, i) => ({
+  src: `/img/cert-${i + 1}.jpg`,
+  alt: `Сертификат ${i + 1}`,
+}));
+
 function App() {
   const [reviews, setReviews] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(12); // сколько фото показываем в галерее
   const currentYear = new Date().getFullYear();
-
-  // 20 фото галереи
-  const galleryImages = Array.from({ length: 50 }, (_, i) => ({
-    src: `/img/gallery-${i + 1}.jpg`,
-    alt: `Работа ${i + 1}`,
-  }));
-
-  // сертификаты
-  const certificateImages = Array.from({ length: 6 }, (_, i) => ({
-    src: `/img/cert-${i + 1}.jpg`,
-    alt: `Сертификат ${i + 1}`,
-  }));
 
   // Анимация появления секций при скролле
   useEffect(() => {
@@ -114,25 +113,34 @@ function App() {
 
   const reviewsToShow = reviews.length ? reviews : fallbackReviews;
 
+  // Отображаем только часть картинок
+  const visibleImages = GALLERY_IMAGES.slice(0, visibleCount);
+  const canLoadMore = visibleCount < GALLERY_IMAGES.length;
+
+  const handleLoadMore = () => {
+    setVisibleCount((prev) =>
+      Math.min(prev + 12, GALLERY_IMAGES.length)
+    );
+  };
+
   return (
     <div className="page">
       {/* ШАПКА */}
       <header className="site-header">
         <div className="header-inner">
           {/* ЛОГО */}
-        <div className="logo-block">
-<img
-  src="/img/logo-irina.png"
-  alt="Логотип Ирина Рощупкина"
-  className="logo-img"
-/>
-
-  <div className="logo-text">
-    <div className="logo-name">ИРИНА РОЩУПКИНА</div>
-    <div className="logo-sub">Hair &amp; Make-Up Artist</div>
-  </div>
-</div>
-
+          <div className="logo-block">
+            <img
+              src="/img/logo-irina.png"
+              alt="Логотип Ирина Рощупкина"
+              className="logo-img"
+              loading="lazy"
+            />
+            <div className="logo-text">
+              <div className="logo-name">ИРИНА РОЩУПКИНА</div>
+              <div className="logo-sub">Hair &amp; Make-Up Artist</div>
+            </div>
+          </div>
 
           {/* МЕНЮ */}
           <nav className="main-nav">
@@ -190,8 +198,7 @@ function App() {
             {/* Текст по центру */}
             <div className="hero-content hero-content-centered">
               <h1 className="hero-title">
-               Ваш стиль — в ритме современных трендов красоты.
-             
+                Ваш стиль — в ритме современных трендов красоты.
               </h1>
 
               <p className="hero-subline">ВЫЕЗД ПО МОСКВЕ И ОБЛАСТИ</p>
@@ -223,12 +230,28 @@ function App() {
             </p>
 
             <div className="works-grid">
-              {galleryImages.map((img, index) => (
+              {visibleImages.map((img, index) => (
                 <div className="work-card" key={index}>
-                  <img src={img.src} alt={img.alt} />
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    loading="lazy"
+                  />
                 </div>
               ))}
             </div>
+
+            {canLoadMore && (
+              <div className="works-load-more">
+                <button
+                  type="button"
+                  className="btn btn-outline"
+                  onClick={handleLoadMore}
+                >
+                  Показать ещё работы
+                </button>
+              </div>
+            )}
           </div>
         </section>
 
@@ -244,46 +267,48 @@ function App() {
             </p>
 
             <div className="price-grid">
-           {/* FASHION STYLE */}
-<div className="price-card">
-  <div className="price-name">Fashion style</div>
-  <div className="price-tag">
-    современный образ с акцентом на стиль и фактуру
-  </div>
-  <ul className="price-list">
-    <li>
-      Идеально подобранные текстуры и цвета под ваш тип внешности и
-      гардероб.
-    </li>
-    <li>
-      Профессиональная работа с кожей: ровный тон, свечение без эффекта
-      «маски».
-    </li>
-    <li>
-      Графичные стрелки, насыщенные губы или акцент на глаза — по вашему
-      настроению и задаче мероприятия.
-    </li>
-    <li>
-      Современные техники и стойкая профессиональная косметика для
-      безупречного результата.
-    </li>
-  </ul>
+              {/* FASHION STYLE */}
+              <div className="price-card">
+                <div className="price-name">Fashion style</div>
+                <div className="price-tag">
+                  современный образ с акцентом на стиль и фактуру
+                </div>
+                <ul className="price-list">
+                  <li>
+                    Идеально подобранные текстуры и цвета под ваш тип внешности и
+                    гардероб.
+                  </li>
+                  <li>
+                    Профессиональная работа с кожей: ровный тон, свечение без эффекта
+                    «маски».
+                  </li>
+                  <li>
+                    Графичные стрелки, насыщенные губы или акцент на глаза — по вашему
+                    настроению и задаче мероприятия.
+                  </li>
+                  <li>
+                    Современные техники и стойкая профессиональная косметика для
+                    безупречного результата.
+                  </li>
+                </ul>
 
-  <div className="price-value">Макияж Fashion style — 8&nbsp;000&nbsp;₽</div>
-  <p className="price-note">
-    Полный образ (макияж + укладка) — 13&nbsp;000&nbsp;₽.
-  </p>
+                <div className="price-value">
+                  Макияж Fashion style — 8&nbsp;000&nbsp;₽
+                </div>
+                <p className="price-note">
+                  Полный образ (макияж + укладка) — 13&nbsp;000&nbsp;₽.
+                </p>
 
-  <p className="price-note">
-    Позвольте себе выделиться и почувствовать себя иконой стиля. Запишитесь
-    на макияж или полный образ в Fashion style и станьте центром внимания.
-  </p>
+                <p className="price-note">
+                  Позвольте себе выделиться и почувствовать себя иконой стиля.
+                  Запишитесь на макияж или полный образ в Fashion style и станьте
+                  центром внимания.
+                </p>
 
-  <a href="#contacts" className="btn btn-outline">
-    Записаться на Fashion style
-  </a>
-</div>
-
+                <a href="#contacts" className="btn btn-outline">
+                  Записаться на Fashion style
+                </a>
+              </div>
 
               {/* СВАДЕБНЫЙ ОБРАЗ */}
               <div className="price-card">
@@ -322,7 +347,7 @@ function App() {
                 </p>
 
                 <div className="price-value">
-                  Свадебный макияж в день торжества —  8000 ₽
+                  Свадебный макияж в день торжества — 8 000 ₽
                 </div>
                 <p className="price-note">
                   Свадебный образ (макияж + причёска) — 15 000 ₽
@@ -343,40 +368,37 @@ function App() {
                 </a>
               </div>
 
-  
-            {/* ВЫПУСКНОЙ ОБРАЗ */}         
-            <div className="price-card">
-  <div className="price-name">Выпускной образ</div>
-  <div className="price-tag">
-    будь звездой своего выпускного вечера
-  </div>
-  <ul className="price-list">
-    <li>
-      Профессиональный макияж, который подчеркнёт красоту и
-      продержится весь вечер.
-    </li>
-    <li>
-      Укладка волос под платье и формат выпускного: локоны,
-      пучок или гладкая укладка.
-    </li>
-    <li>
-      Пробный макияж по желанию, чтобы заранее утвердить образ.
-    </li>
-    <li>Используется стойкая профессиональная косметика.</li>
-  </ul>
+              {/* ВЫПУСКНОЙ ОБРАЗ */}
+              <div className="price-card">
+                <div className="price-name">Выпускной образ</div>
+                <div className="price-tag">
+                  будь звездой своего выпускного вечера
+                </div>
+                <ul className="price-list">
+                  <li>
+                    Профессиональный макияж, который подчеркнёт красоту и
+                    продержится весь вечер.
+                  </li>
+                  <li>
+                    Укладка волос под платье и формат выпускного: локоны,
+                    пучок или гладкая укладка.
+                  </li>
+                  <li>
+                    Пробный макияж по желанию, чтобы заранее утвердить образ.
+                  </li>
+                  <li>Используется стойкая профессиональная косметика.</li>
+                </ul>
 
-  {/* Цены отдельными строками, выделены цветом */}
-  <div className="price-lines">
-    <div className="price-line">Пробный макияж — 5 000 ₽</div>
-    <div className="price-line">Выпускной макияж — 7 000 ₽</div>
-    <div className="price-line">Укладка — 5 000 ₽</div>
-  </div>
+                <div className="price-lines">
+                  <div className="price-line">Пробный макияж — 5 000 ₽</div>
+                  <div className="price-line">Выпускной макияж — 7 000 ₽</div>
+                  <div className="price-line">Укладка — 5 000 ₽</div>
+                </div>
 
-  <a href="#contacts" className="btn btn-outline">
-    Забронировать выпускной
-  </a>
-            </div>
-
+                <a href="#contacts" className="btn btn-outline">
+                  Забронировать выпускной
+                </a>
+              </div>
 
               {/* ЛИФТИНГ-МАKИЯЖ */}
               <div className="price-card">
@@ -411,178 +433,179 @@ function App() {
                   Записаться на лифтинг-макияж
                 </a>
               </div>
-
             </div>
           </div>
-          
         </section>
-        
-{/* ОБО МНЕ */}
-<section
-  id="about"
-  className="section section-soft reveal-section about-section"
->
-  <div className="section-inner about-layout">
-    {/* Карточка с фото визажиста */}
-    <div className="about-photo-card">
-      <div className="about-badge">Стилист и визажист</div>
-      <div className="about-photo-glow" />
-      <img
-        src="/img/about-irina.jpg"
-        alt="Ирина Рощупкина — стилист и визажист"
-        className="about-photo-img"
-      />
-      <div className="about-name">Ирина Рощупкина</div>
-    </div>
 
-    {/* Текст + соцсети */}
-    <div className="about-right">
-      <div className="about-text-block">
-        <h2 className="section-title">Обо мне</h2>
-        <p>
-          Я — стилист и визажист со знаниями дерматологии и косметической
-          химии. До того как макияж стал моей профессией, я более пяти лет
-          изучала кожу и формулы косметических средств. Это позволяет мне
-          не только создавать эстетически выразительные образы, но и
-          понимать, что действительно нужно вашей коже, а каких компонентов
-          стоит избегать.
-        </p>
-        <p>
-          Мой подход основан на убеждении, что макияж меняет не только
-          внешность, но и внутреннее состояние. В работе я ценю
-          индивидуальность, мягко подчеркиваю достоинства и аккуратно
-          нивелирую нюансы, сохраняя природную гармонию и живость лица.
-        </p>
-      </div>
+        {/* ОБО МНЕ */}
+        <section
+          id="about"
+          className="section section-soft reveal-section about-section"
+        >
+          <div className="section-inner about-layout">
+            {/* Карточка с фото визажиста */}
+            <div className="about-photo-card">
+              <div className="about-badge">Стилист и визажист</div>
+              <div className="about-photo-glow" />
+              <img
+                src="/img/about-irina.jpg"
+                alt="Ирина Рощупкина — стилист и визажист"
+                className="about-photo-img"
+                loading="lazy"
+              />
+              <div className="about-name">Ирина Рощупкина</div>
+            </div>
 
-      <div className="about-side-card">
-        <h3>Соцсети</h3>
-        <p>
-          Больше работ, разбор косметики и полезные советы по уходу — в моих
-          социальных сетях.
-        </p>
-        <div className="about-links">
-          <a
-            href="https://www.instagram.com/irina_make.visage/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Instagram
-          </a>
-          <a
-            href="https://t.me/your_profile"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Telegram
-          </a>
-          <a
-            href="https://vk.com/your_profile"
-            target="_blank"
-            rel="noreferrer"
-          >
-            VK
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
- 
-  {/* ПРЕИМУЩЕСТВА */}
-<section
-  id="benefits"
-  className="benefits-section reveal-section"
->
-  <div className="benefits-inner">
-    <h2 className="benefits-title">ПРЕИМУЩЕСТВА</h2>
-    <p className="benefits-subtitle">
-      КАЖДАЯ ДЕВУШКА ДОСТОЙНА ЛУЧШЕГО
-    </p>
-    <div className="benefits-divider" />
+            {/* Текст + соцсети */}
+            <div className="about-right">
+              <div className="about-text-block">
+                <h2 className="section-title">Обо мне</h2>
+                <p>
+                  Я — стилист и визажист со знаниями дерматологии и косметической
+                  химии. До того как макияж стал моей профессией, я более пяти лет
+                  изучала кожу и формулы косметических средств. Это позволяет мне
+                  не только создавать эстетически выразительные образы, но и
+                  понимать, что действительно нужно вашей коже, а каких компонентов
+                  стоит избегать.
+                </p>
+                <p>
+                  Мой подход основан на убеждении, что макияж меняет не только
+                  внешность, но и внутреннее состояние. В работе я ценю
+                  индивидуальность, мягко подчеркиваю достоинства и аккуратно
+                  нивелирую нюансы, сохраняя природную гармонию и живость лица.
+                </p>
+              </div>
 
-    <div className="benefits-grid">
-      <div className="benefit-item">
-        <div className="benefit-item-icon">🎁</div>
-        <div className="benefit-item-body">
-          <div className="benefit-item-title">ПРИЯТНЫЕ БОНУСЫ</div>
-          <ul className="benefit-item-list">
-            <li>Выезд на дом или в студию при необходимости.</li>
-            <li>
-              В стоимость входят все расходные материалы и одноразовые кисти.
-            </li>
-            <li>
-              Спецусловия для подруг невесты и гостьи выпускниц.
-            </li>
-          </ul>
-        </div>
-      </div>
+              <div className="about-side-card">
+                <h3>Соцсети</h3>
+                <p>
+                  Больше работ, разбор косметики и полезные советы по уходу — в моих
+                  социальных сетях.
+                </p>
+                <div className="about-links">
+                  <a
+                    href="https://www.instagram.com/irina_make.visage/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Instagram
+                  </a>
+                  <a
+                    href="https://t.me/your_profile"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Telegram
+                  </a>
+                  <a
+                    href="https://vk.com/your_profile"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    VK
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <div className="benefit-item">
-        <div className="benefit-item-icon">🤍</div>
-        <div className="benefit-item-body">
-          <div className="benefit-item-title">ОТНОШЕНИЕ</div>
-          <ul className="benefit-item-list">
-            <li>Бережное отношение к коже и волосам.</li>
-            <li>
-              Дезинфекция и стерилизация инструментов после каждого клиента.
-            </li>
-            <li>
-              Образ строится вокруг вашей индивидуальности и комфорта.
-            </li>
-          </ul>
-        </div>
-      </div>
+        {/* ПРЕИМУЩЕСТВА */}
+        <section
+          id="benefits"
+          className="benefits-section reveal-section"
+        >
+          <div className="benefits-inner">
+            <h2 className="benefits-title">ПРЕИМУЩЕСТВА</h2>
+            <p className="benefits-subtitle">
+              КАЖДАЯ ДЕВУШКА ДОСТОЙНА ЛУЧШЕГО
+            </p>
+            <div className="benefits-divider" />
 
-      <div className="benefit-item">
-        <div className="benefit-item-icon">💎</div>
-        <div className="benefit-item-body">
-          <div className="benefit-item-title">КОСМЕТИКА</div>
-          <ul className="benefit-item-list">
-            <li>
-              Профессиональная и люксовая косметика, проверенная временем.
-            </li>
-            <li>
-              Стойкость макияжа на протяжении всего мероприятия и фотосессии.
-            </li>
-            <li>
-              Подбор текстур под тип кожи и освещение: день, вечер, студия.
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+            <div className="benefits-grid">
+              <div className="benefit-item">
+                <div className="benefit-item-icon">🎁</div>
+                <div className="benefit-item-body">
+                  <div className="benefit-item-title">ПРИЯТНЫЕ БОНУСЫ</div>
+                  <ul className="benefit-item-list">
+                    <li>Выезд на дом или в студию при необходимости.</li>
+                    <li>
+                      В стоимость входят все расходные материалы и одноразовые кисти.
+                    </li>
+                    <li>
+                      Спецусловия для подруг невесты и гостьи выпускниц.
+                    </li>
+                  </ul>
+                </div>
+              </div>
 
+              <div className="benefit-item">
+                <div className="benefit-item-icon">🤍</div>
+                <div className="benefit-item-body">
+                  <div className="benefit-item-title">ОТНОШЕНИЕ</div>
+                  <ul className="benefit-item-list">
+                    <li>Бережное отношение к коже и волосам.</li>
+                    <li>
+                      Дезинфекция и стерилизация инструментов после каждого клиента.
+                    </li>
+                    <li>
+                      Образ строится вокруг вашей индивидуальности и комфорта.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="benefit-item">
+                <div className="benefit-item-icon">💎</div>
+                <div className="benefit-item-body">
+                  <div className="benefit-item-title">КОСМЕТИКА</div>
+                  <ul className="benefit-item-list">
+                    <li>
+                      Профессиональная и люксовая косметика, проверенная временем.
+                    </li>
+                    <li>
+                      Стойкость макияжа на протяжении всего мероприятия и фотосессии.
+                    </li>
+                    <li>
+                      Подбор текстур под тип кожи и освещение: день, вечер, студия.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* СЕРТИФИКАТЫ */}
-      <section
-  id="certificates"
-  className="section section-light reveal-section"
->
-  <div className="section-inner">
-    <h2 className="section-title">Сертификаты и обучение</h2>
-    <p className="section-subtitle">
-      Повышаю квалификацию и регулярно прохожу обучение у ведущих визажистов.
-      Ниже — часть сертификатов.
-    </p>
+        <section
+          id="certificates"
+          className="section section-light reveal-section"
+        >
+          <div className="section-inner">
+            <h2 className="section-title">Сертификаты и обучение</h2>
+            <p className="section-subtitle">
+              Повышаю квалификацию и регулярно прохожу обучение у ведущих визажистов.
+              Ниже — часть сертификатов.
+            </p>
 
-    <div className="cert-scroll-wrapper">
-      <div className="cert-scroll-row">
-        {certificateImages.map((cert, index) => (
-          <div className="cert-card" key={index}>
-            <div className="cert-image-wrap">
-              <img src={cert.src} alt={cert.alt} />
+            <div className="cert-scroll-wrapper">
+              <div className="cert-scroll-row">
+                {CERTIFICATE_IMAGES.map((cert, index) => (
+                  <div className="cert-card" key={index}>
+                    <div className="cert-image-wrap">
+                      <img
+                        src={cert.src}
+                        alt={cert.alt}
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="cert-caption">Сертификат {index + 1}</div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="cert-caption">Сертификат {index + 1}</div>
           </div>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
-
+        </section>
 
         {/* ОТЗЫВЫ */}
         <section
