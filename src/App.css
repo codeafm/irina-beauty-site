@@ -275,22 +275,157 @@ a {
 /* ===== HERO ===== */
 
 .hero-section {
-  padding: 40px 0 30px;
+  position: relative;
+  padding: 90px 0 80px;
+  overflow: hidden;
+
+  /* ФОН-КАРТИНКА */
+  background-image: url("/img/hero-bg.jpg");
+  background-size: cover;
+  background-position: center right; /* модель справа */
+  background-repeat: no-repeat;
+}
+
+/* Тёмное + светлое наложение сверху */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  /* слева лёгкое затемнение, справа мягкий свет */
+  background:
+    linear-gradient(
+      90deg,
+      rgba(10, 8, 12, 0.92) 0%,
+      rgba(10, 8, 12, 0.85) 32%,
+      rgba(10, 8, 12, 0.35) 65%,
+      rgba(10, 8, 12, 0.1) 100%
+    ),
+    radial-gradient(circle at 70% 20%, rgba(255, 219, 199, 0.25) 0, transparent 55%);
+  pointer-events: none;
 }
 
 .hero-inner {
+  position: relative; /* чтобы текст был над оверлеем */
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 10px 18px 0;
+  padding: 0 20px;
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 18px;
+  grid-template-columns: auto minmax(0, 1.1fr);
+  column-gap: 34px;
   align-items: center;
+  min-height: 360px;
 }
 
-.hero-inner-centered {
-  min-height: 320px;
+/* Соцсети слева остаются как были */
+.hero-social-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
 }
+
+.hero-social-column a {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #f4ecf6;
+  text-decoration: none;
+  background: rgba(14, 10, 16, 0.9);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+}
+
+/* Текст просто на затемнённой части слева */
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.hero-title {
+  max-width: 640px;
+  font-size: 36px;
+  line-height: 1.16;
+  margin: 0;
+  letter-spacing: 0.02em;
+  color: #fff;
+  text-shadow: 0 10px 24px rgba(0, 0, 0, 0.65);
+}
+
+.hero-subline {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #e7d5e9;
+  position: relative;
+  padding-top: 6px;
+}
+
+.hero-subline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.btn-hero-primary {
+  font-size: 12px;
+  padding-inline: 26px;
+  box-shadow: 0 16px 40px rgba(196, 138, 123, 0.6);
+}
+
+.btn-hero-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 20px 46px rgba(196, 138, 123, 0.75);
+}
+
+/* Адаптив */
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 70px 0 45px;
+    background-position: center top; /* на телефоне смещаем модель */
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    row-gap: 18px;
+    min-height: 0;
+  }
+
+  .hero-social-column {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .hero-title {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 22px;
+  }
+}
+
 
 /* Соцсети слева */
 
