@@ -123,93 +123,91 @@ function App() {
 
   return (
     <div className="page">
-      {/* ШАПКА */}
-      <header className="site-header">
-        <div className="header-inner">
-          {/* ЛОГО */}
-          <div className="logo-block">
-            <img
-              src="/img/logo-irina.png"
-              alt="Логотип Ирина Рощупкина"
-              className="logo-img"
-              loading="lazy"
-            />
-            <div className="logo-text">
-              <div className="logo-name">ИРИНА РОЩУПКИНА</div>
-              <div className="logo-sub">Hair &amp; Make-Up Artist</div>
-            </div>
-          </div>
+   {/* ШАПКА */}
+<header className="site-header">
+  <div className="header-inner">
+    {/* ЛОГО */}
+    <div className="logo-block">
+      <img
+        src="/img/logo-irina.png"
+        alt="Логотип Ирина Рощупкина"
+        className="logo-img"
+        loading="lazy"
+      />
+      <div className="logo-text">
+        <div className="logo-name">ИРИНА РОЩУПКИНА</div>
+        <div className="logo-sub">Hair &amp; Make-Up Artist</div>
+      </div>
+    </div>
 
-          {/* МЕНЮ (desktop) */}
-          <nav className="main-nav">
-            <a href="#works">МОИ РАБОТЫ</a>
-            <a href="#prices">ЦЕНЫ</a>
-            <a href="#courses" className="nav-highlight">
-              КУРСЫ И ОБУЧЕНИЕ
-            </a>
-            <a href="#about">ОБО МНЕ</a>
-            <a href="#benefits">ПРЕИМУЩЕСТВА</a>
-            <a href="#certificates">СЕРТИФИКАТЫ</a>
-            <a href="#reviews">ОТЗЫВЫ</a>
-            <a href="#contacts">КОНТАКТЫ</a>
-          </nav>
+    {/* МЕНЮ (desktop) — в нужном порядке */}
+    <nav className="main-nav">
+      <a href="#works">МОИ РАБОТЫ</a>
+      <a href="#prices">ЦЕНЫ</a>
+      <a href="#about">ОБО МНЕ</a>
+      <a href="#certificates">СЕРТИФИКАТЫ</a>
+      <a href="#reviews">ОТЗЫВЫ</a>
+      <a href="#contacts">КОНТАКТЫ</a>
+      <a href="#courses" className="nav-highlight">
+        КУРСЫ И ОБУЧЕНИЕ
+      </a>
+    </nav>
 
-          {/* ТЕЛЕФОН + БУРГЕР */}
-          <div className="header-contacts">
-            <a href="tel:+79161694271" className="header-phone">
-              +7 (916) 169 42 71
-            </a>
-            <span className="header-city">Москва</span>
+    {/* МОСКВА + ТЕЛЕФОН + БУРГЕР */}
+    <div className="header-contacts">
+      <span className="header-city">Москва</span>
+      <a href="tel:+79161694271" className="header-phone">
+        +7 (916) 169 42 71
+      </a>
 
-            {/* кнопка меню для телефона */}
-            <button
-              className={`burger-btn ${menuOpen ? "is-open" : ""}`}
-              onClick={() => setMenuOpen((prev) => !prev)}
-              aria-label="Открыть меню"
-            >
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
-          </div>
-        </div>
+      {/* бургер только для телефона */}
+      <button
+        className={`burger-btn ${menuOpen ? "is-open" : ""}`}
+        onClick={() => setMenuOpen((prev) => !prev)}
+        aria-label="Открыть меню"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
 
-        {/* МОБИЛЬНОЕ МЕНЮ */}
-        <nav className={`mobile-nav ${menuOpen ? "is-open" : ""}`}>
-          <a href="#works" onClick={() => setMenuOpen(false)}>
-            МОИ РАБОТЫ
-          </a>
-          <a href="#prices" onClick={() => setMenuOpen(false)}>
-            ЦЕНЫ
-          </a>
-          <a
-            href="#courses"
-            className="nav-highlight"
-            onClick={() => setMenuOpen(false)}
-          >
-            КУРСЫ И ОБУЧЕНИЕ
-          </a>
-          <a href="#about" onClick={() => setMenuOpen(false)}>
-            ОБО МНЕ
-          </a>
-          <a href="#benefits" onClick={() => setMenuOpen(false)}>
-            ПРЕИМУЩЕСТВА
-          </a>
-          <a href="#certificates" onClick={() => setMenuOpen(false)}>
-            СЕРТИФИКАТЫ
-          </a>
-          <a href="#reviews" onClick={() => setMenuOpen(false)}>
-            ОТЗЫВЫ
-          </a>
-          <a href="#contacts" onClick={() => setMenuOpen(false)}>
-            КОНТАКТЫ
-          </a>
+  {/* МОБИЛЬНОЕ МЕНЮ — тот же порядок */}
+  <nav className={`mobile-nav ${menuOpen ? "is-open" : ""}`}>
+    <a href="#works" onClick={() => setMenuOpen(false)}>
+      МОИ РАБОТЫ
+    </a>
+    <a href="#prices" onClick={() => setMenuOpen(false)}>
+      ЦЕНЫ
+    </a>
+    <a href="#about" onClick={() => setMenuOpen(false)}>
+      ОБО МНЕ
+    </a>
+    <a href="#certificates" onClick={() => setMenuOpen(false)}>
+      СЕРТИФИКАТЫ
+    </a>
+    <a href="#reviews" onClick={() => setMenuOpen(false)}>
+      ОТЗЫВЫ
+    </a>
+    <a href="#contacts" onClick={() => setMenuOpen(false)}>
+      КОНТАКТЫ
+    </a>
+    <a
+      href="#courses"
+      className="nav-highlight"
+      onClick={() => setMenuOpen(false)}
+    >
+      КУРСЫ И ОБУЧЕНИЕ
+    </a>
 
-          <a href="tel:+79161694271" className="mobile-phone">
-            +7 (916) 169 42 71
-          </a>
-        </nav>
-      </header>
+    <span className="mobile-city">Москва</span>
+    <a href="tel:+79161694271" className="mobile-phone">
+      +7 (916) 169 42 71
+    </a>
+  </nav>
+</header>
+
 
       <main>
         {/* HERO */}
@@ -756,6 +754,17 @@ function App() {
                     @irina_make.visage
                   </a>
                 </li>
+                <li>
+                  Telegram:{" "}
+                  <a
+                    href="https://t.me/Iriska_ros"
+                    className="contact-link"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    @Iriska_ros
+                  </a>
+                </li>
                 <li>Локация: Москва и Долгопрудный, выезд по договорённости.</li>
               </ul>
 
@@ -792,7 +801,7 @@ function App() {
               Instagram
             </a>
             <a
-              href="https://t.me/your_profile"
+              href="https://t.me/Iriska_ros"
               target="_blank"
               rel="noreferrer"
             >
