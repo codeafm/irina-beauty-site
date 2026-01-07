@@ -914,6 +914,42 @@ a {
   background: #ffffff;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
 }
+/* Кнопка "Отправить отзыв" именно в форме отзывов */
+.review-form .btn.btn-primary {
+  width: 100%;
+  max-width: 320px;
+  margin: 16px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 32px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(90deg, #e7a18d, #f2c1aa); /* фон кнопки */
+  color: #ffffff;                                       /* белый текст */
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+/* Ховер/нажатие */
+.reviews-form .btn.btn-primary:hover {
+  background: linear-gradient(90deg, #d78c77, #ecb097);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.24);
+  transform: translateY(-1px);
+}
+
+.reviews-form .btn.btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.2);
+}
 
 .review-name {
   font-weight: 600;
@@ -1162,4 +1198,52 @@ a {
   .section-title {
     font-size: 22px;
   }
+  
 }
+/* Блок с кнопкой "Показать ещё работы" */
+.works-load-more {
+  margin: 32px 0 16px;
+  text-align: center;
+}
+
+/* Базовая кнопка */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 12px 28px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  transition: 
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+/* Вариант на светлом/белом фоне */
+.btn-outline {
+  background-color: #ffffff;
+  color: #3b2527;
+  border: 1px solid rgba(196, 138, 123, 0.9); /* нежно-розовый контур */
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+.btn-outline:hover {
+  background: linear-gradient(135deg, #f6d1c6, #e5b4a2);
+  color: #1f0f12;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.18);
+  transform: translateY(-1px);
+}
+
+.btn-outline:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
